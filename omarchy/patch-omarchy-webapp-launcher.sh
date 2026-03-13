@@ -10,7 +10,7 @@ TARGET="$OMARCHY_BIN/omarchy-launch-webapp"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 PATCH_SOURCE="$SCRIPT_DIR/omarchy-launch-webapp.patched"
-PATCH_CSS_SOURCE="$SCRIPT_DIR/userChrome.css"
+PATCH_CSS_SOURCE="$SCRIPT_DIR/css/userChrome.css"
 MARKER="# Redirect standard WebApp calls to Firefox WebApp profile"
 
 if [[ ! -f "$TARGET" ]]; then
