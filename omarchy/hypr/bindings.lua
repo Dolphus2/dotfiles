@@ -54,6 +54,6 @@ o.bind("SUPER + SHIFT + E", "Gmail", { webapp = "https://mail.google.com" })
 o.bind("SUPER + CTRL + V", "Clipboard history", "copyq toggle")
 o.bind("SUPER + SHIFT + S", "Screenshot with editing", "omarchy-cmd-screenshot")
 
-o.bind("SUPER + SHIFT + KP_0", "Swap monitor workspaces", function()
-  hl.dispatch(hl.dsp.swapactiveworkspaces("DP-1", "DP-2"))
+o.bind("SUPER + SHIFT + Z", "Swap monitor workspaces", function()
+  hl.dispatch(hl.dsp.workspace.swap_monitors({ monitor1 = "DP-1", monitor2 = "HDMI-A-2" }))
 end)
