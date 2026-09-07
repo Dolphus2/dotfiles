@@ -1,36 +1,40 @@
 #!/bin/sh
 
-set -e
+set -eu
 
-HYPRLAND_CONFIG="$HOME/.config/hypr/hyprland.conf"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-OVERRIDES_CONFIG="$SCRIPT_DIR/hyprland-overrides.conf"
-SOURCE_LINE="source = $OVERRIDES_CONFIG"
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+HYPR_CONFIG_DIR="$HOME/.config/hypr"
+HYPRLAND_CONFIG="$HYPR_CONFIG_DIR/hyprland.lua"
 
-# Check if hyprland config exists
 if [ ! -f "$HYPRLAND_CONFIG" ]; then
-    echo "Hyprland config not found at $HYPRLAND_CONFIG"
-    echo "Please install hyprland first"
+    echo "Hyprland Lua config not found at $HYPRLAND_CONFIG"
+    echo "Please install Omarchy 4 first"
     exit 1
 fi
 
-# Check if overrides config exists
-if [ ! -f "$OVERRIDES_CONFIG" ]; then
-    echo "Overrides config not found at $OVERRIDES_CONFIG"
-    exit 1
-fi
+mkdir -p "$HYPR_CONFIG_DIR"
 
-# Check if source line already exists in hyprland.conf
-if grep -Fxq "$SOURCE_LINE" "$HYPRLAND_CONFIG"; then
-    echo "Source line already exists in $HYPRLAND_CONFIG"
-else
-    echo "Adding source line to $HYPRLAND_CONFIG"
-    echo "" >> "$HYPRLAND_CONFIG"
-    echo "$SOURCE_LINE" >> "$HYPRLAND_CONFIG"
-    echo "Source line added successfully"
-fi
+install_if_changed() {
+    source=$1
+    target=$2
 
-echo "Hyprland overrides setup complete!"
-sleep 0.5
+    if [ -f "$target" ] && cmp -s "$source" "$target"; then
+        echo "Already up to date: $target"
+    else
+        cp "$source" "$target"
+        echo "Installed: $target"
+    fi
+}
+
+install_if_changed "$SCRIPT_DIR/hypr/bindings.lua" "$HYPR_CONFIG_DIR/bindings.lua"
+install_if_changed "$SCRIPT_DIR/hypr/input.lua" "$HYPR_CONFIG_DIR/input.lua"
+# install_if_changed "$SCRIPT_DIR/hypr/autostart.lua" "$HYPR_CONFIG_DIR/autostart.lua"
+
+# install_if_changed "$SCRIPT_DIR/hypr/envs.lua" "$HYPR_CONFIG_DIR/envs.lua"
+# if ! grep -Fqx 'require("hypr.envs")' "$HYPRLAND_CONFIG"; then
+#     printf '\nrequire("hypr.envs")\n' >> "$HYPRLAND_CONFIG"
+# fi
+
+echo "Omarchy Lua overrides installed in $HYPR_CONFIG_DIR"
 hyprctl reload
-echo "Hyprland reload complete"
+hyprctl configerrors

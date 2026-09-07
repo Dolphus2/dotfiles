@@ -2,7 +2,8 @@
 
 . ./install-firefox.sh
 . ./install-stow.sh
-# . ./install-copyq.sh
+. ./install-copyq.sh
 # . ./install-flameshot.sh
 
+. ./install-overrides.sh
 . ./patch-omarchy-webapp-launcher.sh
