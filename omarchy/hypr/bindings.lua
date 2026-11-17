@@ -47,12 +47,11 @@ hl.unbind("SUPER + SHIFT + ALT + X")
 hl.unbind("SUPER + SHIFT + C")
 o.bind("SUPER + SHIFT + C", "Calendar", { webapp = "https://calendar.google.com" })
 
-o.bind("SUPER + SHIFT + A", "Gemini", { webapp = "https://gemini.google.com" })
+o.bind("SUPER + SHIFT + A", "Gemini", { webapp = "https://claude.ai" })
 
 o.bind("SUPER + SHIFT + E", "Gmail", { webapp = "https://mail.google.com" })
 
-o.bind("SUPER + CTRL + V", "Clipboard history", "copyq toggle")
-o.bind("SUPER + SHIFT + S", "Screenshot with editing", "omarchy-cmd-screenshot")
+-- o.bind("SUPER + SHIFT + S", "Screenshot with editing", "omarchy-cmd-screenshot")
 
 o.bind("SUPER + SHIFT + Z", "Swap monitor workspaces", function()
   hl.dispatch(hl.dsp.workspace.swap_monitors({ monitor1 = "DP-1", monitor2 = "HDMI-A-2" }))
