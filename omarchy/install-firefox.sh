@@ -1,3 +1,3 @@
 #!/bin/sh
 
-yay -S --noconfirm --needed firefox
+omarchy pkg add firefox

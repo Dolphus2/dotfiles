@@ -1,3 +1,3 @@
 #!/bin/sh
 
-yay -S --noconfirm --needed flameshot
+omarchy pkg add flameshot
