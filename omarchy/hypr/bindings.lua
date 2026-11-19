@@ -35,10 +35,12 @@
 
 hl.unbind("SUPER + SHIFT + G") -- unbind signal
 hl.unbind("SUPER + SHIFT + ALT + A")
-hl.unbind("SUPER + SHIFT + CTRL + G")
-hl.unbind("SUPER + SHIFT + P")
-hl.unbind("SUPER + SHIFT + X")
+hl.unbind("SUPER + SHIFT + CTRL + G") -- unbind google messages
+hl.unbind("SUPER + SHIFT + P") -- unbind google photos
+hl.unbind("SUPER + SHIFT + X") -- unbind x
 hl.unbind("SUPER + SHIFT + ALT + X")
+hl.unbind("SUPER + SHIFT + ALT + E") -- unbind hey new email
+hl.unbind("SUPER + SHIFT + Y") -- unbind youtube
 
 o.rebind("SUPER + SHIFT + C", "Calendar", { webapp = "https://calendar.google.com" })
 
